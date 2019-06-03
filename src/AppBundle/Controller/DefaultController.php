@@ -4,31 +4,49 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Entity\Article;
+use AppBundle\Entity\Contact;
 
-class DefaultController extends Controller
-{
-    
+
+class DefaultController extends Controller {
+
     public function indexAction(Request $request)
     {
-       $em = $this->getDoctrine()->getRepository(Article::class);
-       $articles = $em->getByAuteurAndNom('popov33', 'POPOV');
-
-       return $this->render('AppBundle:Default:index.html.twig', array(
-       'articles'=> $articles,
-    ));
-   }
+        
+        return $this->render('@App/Default/index.html.twig');
+    }
 
     public function contactAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('@App/Default/contact.html.twig');
+
+        $contact = new Contact();
+        $form = $this->createForm('AppBundle\Form\ContactType', $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            $this->addFlash(
+                    'success', 'Demande de contact enregistrée !'
+            );
+
+            return $this->redirectToRoute('contact');
+        }
+        if ($form->isSubmitted() && !$form->isValid())
+        {
+
+            $this->addFlash(
+                    'danger', 'Le contact n\'est pas enregistré !'
+            );
+
+            return $this->redirectToRoute('contact');
+        }
+        return $this->render('AppBundle:Default:contact.html.twig', array(
+                    'contact' => $contact,
+                    'form' => $form->createView(),
+        ));
     }
 
-    public function articleAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('@App/Default/article.html.twig');
-    }
 }

@@ -3,50 +3,44 @@
 {% block main %}
 
 
-<h1 style="text-align: center">Contact</h1>
+    <h1 style="text-align: center">Contact</h1>
 
-<div class="row">
-   <form class="col s12">
-      <div class="row">
-         <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate" placeholder="Nom">
-            <label for="first_name"></label>
-         </div>
-         <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate" placeholder="Prénom">
-            <label for="last_name"></label>
-         </div>
-      </div>
-      <div class="row">
-         <div class="input-field col s6">
-            <input id="disabled" type="text" class="validate" placeholder="Pseudo">
-            <label for="Pseudo"></label>
-         </div>
-      </div>
-      <div class="row">
-         <div class="input-field col s6">
-            <input id="password" type="password" class="validate" placeholder="Mot de passe">
-            <label for="password"></label>
-         </div>
-      </div>
-      <div class="row">
-         <div class="input-field col s12">
-            <input id="email" type="email" class="validate" placeholder="Email">
-            <label for="email"></label>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col s12">
-            This is an inline input field:
-            <div class="input-field inline">
-               <input id="email_inline" type="email" class="validate" placeholder="Email">
-               <label for="email_inline"></label>
-               <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-            </div>
-         </div>
-      </div>
-   </form>
-</div>
+    <div class="row">
+        {{ form_start(form) }}
+        
+            
+                <div>
+                    {{ form_label(form.nom) }}
+                    {{ form_errors(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.sujet) }}
+                    {{ form_errors(form.sujet) }}
+                    {{ form_widget(form.sujet) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.commentaire) }}
+                    {{ form_errors(form.commentaire) }}
+                    {{ form_widget(form.commentaire) }}
+                </div>
+                <div>
+                    <input type='submit' value='Envoyer'>
+                    
+                </div>
+
+                     
+      {{ form_end(form) }}
+
+    </div>
 
 
 {% endblock %}

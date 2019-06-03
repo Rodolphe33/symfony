@@ -1,0 +1,51 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block main %}
+    <h1>Liste des articles</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Slug</th>
+                <th>Titre</th>
+                <th>Cat</th>
+                <th>Contenu</th>
+                <th>Dateajout</th>
+                <th>Datemodif</th>
+                <th>Resume</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
+                <td>{{ article.slug }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.cat }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{% if article.dateAjout %}{{ article.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if article.dateModif %}{{ article.dateModif|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ article.resume }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('article_show', { 'id': article.id }) }}" class='waves-effect waves-light btn-small'>Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('article_edit', { 'id': article.id }) }}" class='waves-effect waves-light btn-small'>Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('article_new') }}" class="waves-effect waves-light btn-small #76ff03">Création d'un nouvel article</a>
+        </li>
+    </ul>
+{% endblock %}

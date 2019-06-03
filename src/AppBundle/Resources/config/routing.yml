@@ -1,3 +1,7 @@
+app_contact:
+    resource: "@AppBundle/Resources/config/routing/contact.yml"
+    prefix:   /admin/contact
+
 homepage:
     path: /
     defaults: { _controller: 'AppBundle:Default:index'}
@@ -6,6 +10,3 @@ contact:
     path: /contact
     defaults: { _controller: 'AppBundle:Default:contact'}
 
-article:
-    path: /article
-    defaults: { _controller: 'AppBundle:Default:article'}

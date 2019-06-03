@@ -1,46 +1,30 @@
 {% extends 'AppBundle::layout.html.twig' %}
+
 {% block body %}
-<!--  barre de navigation (début)   -->
-  <nav>
-    <div class="nav-wrapper #eeeeee grey">
-      <a href="{{ url('index') }}" class="brand-logo right"><i class="large material-icons medium">flight_land</i></a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="symphony.html">Symfony</a></li>
-        <li><a href="{{ url('article') }}">Article</a></li>
-        <li><a href="{{ url('contact') }}">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!--  barre de navigation (fin)   -->
+    <!--  barre de navigation (début)   -->
+    <nav>
+        <div class="nav-wrapper #eeeeee grey">
+            <a href="{{ url('homepage') }}" class="brand-logo right"><i class="large material-icons medium">flight_land</i></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="symphony.html">Symfony</a></li>
+                <li><a href="#">Article</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--  barre de navigation (fin)   -->
 
-<h1 style="color: red; text-align: center;">Putain, j'y arrive</h1>
-<h2 style="text-align: center">Youhou</h2>
+    {% for article in article %}
 
-<!--   peid de page (début)   -->
-<footer class="page-footer #eeeeee grey">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-              </div>
+        <div class="card">
+            <div class="card-header">{{ article.Cat }}</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ article.titre }}</h5>
+                <p class="card-text">{{ article.contenu }}</p>
+                <a href="{{ path('article_show', { 'id': article.id }) }}" class="btn btn-primary">Lire l'article</a>
             </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2019 Rodolphe
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
-        <!--   peid de page (début)   -->
+        </div>
+
+    {% endfor %}
+
 {% endblock %}

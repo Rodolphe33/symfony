@@ -1,0 +1,16 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block main %}
+    <h1>Création d'un nouvel article</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Créer" class='waves-effect waves-light btn-small dark'/>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('article_index') }}" class='waves-effect waves-light btn-small #76ff03'>Retour</a>
+        </li>
+    </ul>
+{% endblock %}

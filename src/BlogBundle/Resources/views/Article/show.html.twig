@@ -1,0 +1,52 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block main %}
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.titre }}</td>
+            </tr>
+            <tr>
+                <th>Cat</th>
+                <td>{{ article.cat }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ article.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Dateajout</th>
+                <td>{% if article.dateAjout %}{{ article.dateAjout|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datemodif</th>
+                <td>{% if article.dateModif %}{{ article.dateModif|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ article.resume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('article_index') }}" class='waves-effect waves-light btn-small dark'>Voir</a>
+        </li>
+        <li>
+            <a href="{{ path('article_edit', { 'id': article.id }) }}" class='waves-effect waves-light btn-small red'>Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class='waves-effect waves-light btn-small    #212121 grey darken-4'>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
